@@ -150,19 +150,150 @@ fun main()
     println(text4)*/
     /*************************************************************************************/
 
+    /*********************************** FOR LOOP ****************************************/
+    /*for (i in 1..10) {                  //includes the last value
+        println("i = $i")
+    }
+    for (j in 1 until 10) {            //until excludes the last value
+        println("j = $j")
+    }
+
+    for (k in 10 downTo 1) {           //downTo counts down
+        println("k = $k")
+    }
+
+    for (l in 1..10 step 2) {          //step skips the values
+        println("l = $l")
+    }*/
+    /*************************************************************************************/
+
+    /***************************** WHILE AND DO WHILE LOOP *******************************/
+    /*var number = 0
+
+    while (number < 10) println(number++)
+*//*    {
+        println(number)
+        number++
+    }*//*
+
+    number = 0
+    do {
+        println(number++)
+    } while (number < 10)
+
+    number = 0
+    while (number < 10) {
+        number++
+        if (number == 7) {
+            break
+        }
+        if (number in 3..5) {
+            continue
+        }
+        println(number)
+    }
+
+    for (i in 0..10) {
+        if (i in 3..8) {
+            continue
+        }
+        println(i)
+    }
+
+    number = 0
+    outer@ while (number < 5) {
+        number++
+        println(number)
+
+        var i = 0
+
+        while (i < 5) {
+            if (i == 0) break@outer                         //breaks the outer loop
+            i++
+            println("***$i")
+        }
+    }*/
+
+    /*val range = Scanner(System.`in`)
+    var counter = 0
+
+    for (number in 1..range.nextInt()) {
+        if (number % 2 == 0) {
+            println(number)
+            counter++
+        }
+    }
+    println(counter)*/
+    //OR
+    /*var number = 1
+    val lastNumber = 20
+    var evenNumberCounter = 0
+
+    while (number <= lastNumber) {
+        number++
+
+        if((number % 2) != 0) {
+            continue
+        }
+
+        evenNumberCounter++
+        println(number)
+    }
+    println("Total number of even numbers: $evenNumberCounter")*/
+    /*************************************************************************************/
+
+    /************************************* ARRAY *****************************************/
+    val names = arrayOf("John", "Stephen", "Megan")                     //val names: Array<String> also works
+    val values = arrayOf(4, 5, 6, 7, "Alex", 'a', 5.6, true)
+    names[0] = "Alex"
+    println("First element: ${names[0]}")
+    println("The size of the array is: ${names.size}")
+
+    for (name in names) {
+        println(name)
+    }
+
+    for (i in values) {
+        if (i is Int) {                                                             //is operator checks the type of the variable
+            println(i)
+        }
+    }
+
+    val minMaxArray = arrayOf(5, 2, 3, 6, 1, 4, 9, 8, 7)
+    var isMax = true
+    println(findMax(minMaxArray))
+    println(findMin(minMaxArray))
+    println(findMinOrMax(minMaxArray, isMax))
+
+    /*************************************************************************************/
+
     /*********************************** FUNCTIONS ***************************************/
-    sayHello("Alex", 22)
+    /*sayHello("Alex", 22)
 
     val hasInternetConnection = true
     if (hasInternetConnection) {
         getData("Some data")
     }
     else {
-        showMesaage()
+        showMessage()
     }
+
+    val max1 = getMax(5, 9)
+    println("The maximum number is: $max1")
+
+    val max2 = getMax(5.6, 9.7)
+
+    val max3 = getMax(5, 7, 10)
+
+    sendMessage("Alex", "Hello")
+    sendMessage(message = "Hello", name = "Alex")     //Named arguments
+
+    println(sum1(5, 6 , 7, 10, 3))
+
+    sum2(5, 6, 7, 10, 3)*/
 }
 
-fun sayHello(name: String, age: Int) {
+/*fun sayHello(name: String, age: Int) {
     println("Hello, $name! Your age is $age.")
 }
 
@@ -170,6 +301,71 @@ fun getData(data: String) {
     println("Your data is: $data")
 }
 
-fun showMesaage() {
+fun showMessage() {
     println("There is no internet connection")
+}
+
+*//*fun getMax(a: Int, b: Int): Int {
+    return if (a > b) a else b
+}*//*
+//OR
+fun getMax(a: Int, b: Int) = if (a > b) a else b
+fun getMax(a: Double, b: Double) = if (a > b) a else b
+
+fun getMax(a: Int, b: Int, c: Int): Int {
+    return if (a >= b && a >= c) {
+        a
+    }
+    else if (b >= a && b >= c) {
+        b
+    }
+    else {
+        c
+    }
+}
+
+fun sendMessage(name: String = "User", message: String = sendText()) {       //Default value
+    println("Name = $name and message = $message")
+}
+
+fun sendText() = "Some text"
+
+fun sum1(vararg numbers: Int): Int {     //Variable number of arguments
+    var result = 0
+    for (number in numbers) {
+        result += number
+    }
+    return result
+}
+fun sum2(vararg numbers: Int) {
+    numbers.forEach { println(it) }
+}*/
+
+fun findMin(minArray: Array<Int>): Int {
+    var min = minArray[0]
+    for (i in minArray) {
+        if(i < min) {
+            min = i
+        }
+    }
+    return min
+}
+
+fun findMax(maxArray: Array<Int>): Int {
+    var max = maxArray[0]
+    for (i in maxArray) {
+        if(i > max) {
+            max = i
+        }
+    }
+    return max
+}
+
+fun findMinOrMax(minMaxArray: Array<Int>, minOrMax: Boolean): Int {
+    if (minOrMax) {
+        return findMax(minMaxArray)
+    }
+    else {
+        return findMin(minMaxArray)
+    }
 }
